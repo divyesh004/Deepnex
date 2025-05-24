@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Home, Box, Info, DollarSign, Mail, Menu, X, Briefcase } from 'lucide-react';
-import DeepnexLogo from '../images/Deepnex-Logo.png';
+import DeepnexLogo from 'Client/src/images/Deepnex-Logo.png';
 
 // Simplified button component
 const PrimaryButton = ({ children, className, onClick }) => {
