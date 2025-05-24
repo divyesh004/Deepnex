@@ -1,0 +1,33 @@
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="500" height="300" fill="#f0f9ff" rx="10" ry="10"/>
+  
+  <!-- Validator Shield -->
+  <path d="M250 50 L350 80 L350 160 C350 200 300 240 250 260 C200 240 150 200 150 160 L150 80 Z" fill="#ecfdf5" stroke="#0ea5e9" stroke-width="2"/>
+  
+  <!-- Checkmark in Shield -->
+  <path d="M220 150 L240 170 L280 130" fill="none" stroke="#0ea5e9" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Nodes/Validators -->
+  <circle cx="150" cy="220" r="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="150" y="225" font-family="Arial" font-size="12" text-anchor="middle" fill="#b45309">V1</text>
+  
+  <circle cx="200" cy="250" r="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="200" y="255" font-family="Arial" font-size="12" text-anchor="middle" fill="#b45309">V2</text>
+  
+  <circle cx="250" cy="220" r="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="250" y="225" font-family="Arial" font-size="12" text-anchor="middle" fill="#b45309">V3</text>
+  
+  <circle cx="300" cy="250" r="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="300" y="255" font-family="Arial" font-size="12" text-anchor="middle" fill="#b45309">V4</text>
+  
+  <circle cx="350" cy="220" r="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="350" y="225" font-family="Arial" font-size="12" text-anchor="middle" fill="#b45309">V5</text>
+  
+  <!-- Connecting Lines -->
+  <line x1="150" y1="200" x2="250" y2="180" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="200" y1="230" x2="250" y2="180" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="250" y1="200" x2="250" y2="180" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="300" y1="230" x2="250" y2="180" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="350" y1="200" x2="250" y2="180" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="5,5"/>
+</svg>

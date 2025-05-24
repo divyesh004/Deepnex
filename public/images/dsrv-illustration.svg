@@ -1,0 +1,40 @@
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="500" height="300" fill="#f0f9ff" rx="10" ry="10"/>
+  
+  <!-- DSRV Logo Circle -->
+  <circle cx="250" cy="120" r="70" fill="#ecfdf5" stroke="#0ea5e9" stroke-width="2"/>
+  
+  <!-- DSRV Text -->
+  <text x="250" y="130" font-family="Arial" font-size="36" font-weight="bold" text-anchor="middle" fill="#0369a1">DSRV</text>
+  
+  <!-- Server/Validator Infrastructure -->
+  <rect x="180" y="200" width="140" height="60" rx="5" ry="5" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  
+  <!-- Server Details -->
+  <line x1="200" y1="210" x2="300" y2="210" stroke="#0ea5e9" stroke-width="1"/>
+  <line x1="200" y1="220" x2="280" y2="220" stroke="#0ea5e9" stroke-width="1"/>
+  <line x1="200" y1="230" x2="290" y2="230" stroke="#0ea5e9" stroke-width="1"/>
+  
+  <!-- Connection Lines -->
+  <path d="M250 190 L250 200" stroke="#0ea5e9" stroke-width="2"/>
+  
+  <!-- Coins/Tokens around -->
+  <circle cx="150" cy="150" r="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="150" y="155" font-family="Arial" font-size="12" text-anchor="middle" fill="#b45309">PoS</text>
+  
+  <circle cx="350" cy="150" r="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="350" y="155" font-family="Arial" font-size="12" text-anchor="middle" fill="#b45309">PoS</text>
+  
+  <!-- Connection Lines to Coins -->
+  <path d="M180 150 L230 120" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="5,5"/>
+  <path d="M320 120 L330 150" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- Small Nodes -->
+  <circle cx="150" cy="220" r="15" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1"/>
+  <circle cx="350" cy="220" r="15" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1"/>
+  
+  <!-- Connection to Server -->
+  <path d="M165 220 L180 220" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="3,3"/>
+  <path d="M320 220 L335 220" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>

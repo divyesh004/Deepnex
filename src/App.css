@@ -1,0 +1,275 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Magic UI integration styles */
+.magic-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.magic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.shine-border {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shine-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  padding: 2px;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+
+/* Tech icon styles */
+.tech-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.tech-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.orbit-item .tech-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-item .tech-icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.tech-icon::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  transform: rotate(30deg);
+  animation: tech-icon-shine 6s infinite linear;
+  opacity: 0;
+}
+
+.tech-icon:hover::after {
+  opacity: 1;
+}
+
+@keyframes tech-icon-shine {
+  0% {
+    transform: rotate(30deg) translateX(-300%);
+  }
+  100% {
+    transform: rotate(30deg) translateX(300%);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(5px, -10px);
+  }
+  50% {
+    transform: translate(10px, 0);
+  }
+  75% {
+    transform: translate(5px, 10px);
+  }
+}
+
+.animate-float {
+  animation: float 15s ease-in-out infinite;
+}
+
+.shadow-glow-sm {
+  box-shadow: 0 0 8px currentColor;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shine {
+  animation: shine 2s linear infinite;
+}
+
+/* Hero section styles */
+.hero {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Globe styles */
+.globe-canvas {
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(230, 57, 70, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.globe-canvas:hover {
+  box-shadow: 0 0 40px rgba(230, 57, 70, 0.4);
+}
+
+/* Morphing Text styles */
+.text-primary span {
+  display: inline-block;
+  min-height: 1.2em;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 0;
+  }
+  
+  /* Ensure content doesn't overlap with the dock navigation */
+  main {
+    padding-bottom: 80px;
+  }
+}
+
+/* Desktop navigation styles */
+@media (min-width: 768px) {
+  /* Hide dock on desktop */
+  .mobile-dock {
+    display: none;
+  }
+}
+
+/* Logo styles */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 90px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover .logo-image {
+  transform: scale(1.05);
+}
+
+/* 3D Tilt Effect for Product Cards */
+.product-card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.product-card-3d:hover {
+  transform: perspective(1000px) rotateY(var(--rotateY)) rotateX(var(--rotateX)) scale3d(1.05, 1.05, 1.05);
+}
+
+/* Individual product items within the showcase for finer control if needed */
+.product-card-3d > div {
+  transition: transform 0.5s;
+}
