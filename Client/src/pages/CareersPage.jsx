@@ -191,18 +191,18 @@ const CareersPage = () => {
             subtitle="Opportunities"
             title="Current Open Positions"
           />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto"> {/* Responsive grid and gap */}
+          {/* Center the card(s) horizontally */}
+          <div className="flex flex-col items-center justify-center gap-6 sm:gap-8 max-w-4xl mx-auto"> {/* Changed from grid to flex */}
             {openPositions.map((position, index) => (
               <motion.div 
                 key={index}
-                className="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex justify-between items-center" // Added flex for layout
+                className="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 w-full max-w-md flex flex-col items-center" // Center content in card
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div>
+                <div className="w-full text-center mb-4">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-1">{position.title}</h3> {/* Responsive title */}
                   <p className="text-gray-600 text-sm sm:text-base mb-2">{position.location} • {position.type}</p> {/* Responsive text */}
                 </div>
@@ -210,9 +210,9 @@ const CareersPage = () => {
                   href="https://forms.gle/zAG7AzDroCuTwvEDA" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-primary text-white px-4 py-2 rounded-md font-medium hover:bg-accent transition-all duration-300 text-sm sm:text-base flex-shrink-0 flex items-center"
+                  className="bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-accent transition-all duration-300 text-base flex items-center justify-center mx-auto"
                 >
-                  Apply Now <ArrowRight className="ml-1 w-3 h-3 sm:w-4 sm:h-4" />
+                  Apply Now <ArrowRight className="ml-2 w-4 h-4" />
                 </a>
               </motion.div>
             ))}

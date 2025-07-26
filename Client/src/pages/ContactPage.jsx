@@ -135,37 +135,7 @@ const ContactPage = () => {
         </div>
       </section>
    
-      {/* CTA Section - Join Beta */}
-      <section className="section bg-secondary py-16 sm:py-20"> {/* Adjusted padding & background */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center"> {/* Added responsive padding */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-heloveta text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"><span class="text-primary">Join</span> Our Beta Program</h2> {/* Responsive text & margin, updated text color */}
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto">Be among the first to experience our revolutionary platform and help shape its future. Get exclusive access and provide valuable feedback.</p> {/* Responsive text & margin, updated text color */}
-            <div className="max-w-md mx-auto">
-              <form className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center"> {/* Responsive gap */}
-                <input 
-                  type="email" 
-                  placeholder="Enter your email address" 
-                  className="flex-grow px-3 py-2.5 sm:px-4 sm:py-3 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary transition-colors w-full sm:w-auto text-sm sm:text-base" /* Responsive padding & text, updated focus ring */
-                  aria-label="Email for beta program"
-                />
-                <button 
-                  type="submit" 
-                  className="bg-primary text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-md font-medium hover:bg-accent transition-all duration-300 hover:scale-105 flex items-center justify-center w-full sm:w-auto whitespace-nowrap text-sm sm:text-base" /* Responsive padding & text, updated button style */
-                >
-                  Join Waitlist <ChevronRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" /> {/* Responsive icon */}
-                </button>
-              </form>
-              <p className="text-xs sm:text-sm text-gray-600 mt-3 sm:mt-4 opacity-80">By joining, you agree to receive updates from Deepnex. You can unsubscribe at any time.</p> {/* Responsive text & margin, updated text color */}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
     
     </div>
   );

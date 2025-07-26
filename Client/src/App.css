@@ -21,6 +21,47 @@ main {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+/* Dock icon animation */
+@keyframes dock-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.dock-icon-bounce {
+  animation: dock-bounce 0.5s ease;
+}
+
+@keyframes tooltip-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.8) translateX(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) translateX(-50%);
+  }
+}
+
+@keyframes dock-glow {
+  0% {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1) inset;
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1) inset, 0 0 20px rgba(230, 57, 70, 0.3);
+  }
+  100% {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1) inset;
+  }
+}
+
+.mobile-dock {
+  animation: dock-glow 4s ease-in-out infinite;
+}
+
 .shine-border {
   position: relative;
   border-radius: 8px;
@@ -229,9 +270,41 @@ main {
     padding: 80px 0;
   }
   
-  /* Ensure content doesn't overlap with the dock navigation */
+  /* Ensure content doesn't overlap with the dock toggle button */
   main {
     padding-bottom: 80px;
+  }
+  
+  /* Add extra padding to the bottom of the page to prevent content from being hidden behind the dock */
+  body {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+}
+
+/* Enhanced hover effects for mobile dock icons */
+@media (max-width: 1024px) {
+  .mobile-dock .group:hover {
+    transform: translateY(-2px);
+  }
+  
+  .mobile-dock .group:active {
+    transform: translateY(0px);
+  }
+  
+  /* Improved touch feedback for mobile */
+  .mobile-dock .group:active .dock-icon-bounce {
+    animation: none;
+  }
+}
+
+/* Medium screen specific styles for dock labels */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mobile-dock {
+    padding-bottom: 0.75rem;
+  }
+  
+  .mobile-dock .group {
+    padding-bottom: 0.25rem;
   }
 }
 
@@ -272,4 +345,32 @@ main {
 /* Individual product items within the showcase for finer control if needed */
 .product-card-3d > div {
   transition: transform 0.5s;
+}
+
+@keyframes footer-glow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: blur(32px);
+    box-shadow: 0 0 40px 10px #E63946, 0 0 80px 20px #2D2D2D;
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(48px);
+    box-shadow: 0 0 80px 30px #E63946, 0 0 120px 40px #2D2D2D;
+  }
+}
+.animate-footer-glow {
+  animation: footer-glow 4s ease-in-out infinite;
+}
+
+@keyframes footer-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-footer-float {
+  animation: footer-float 5s ease-in-out infinite;
 }

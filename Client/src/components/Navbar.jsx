@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, Home, Box, Info, DollarSign, Mail, Menu, X, Briefcase } from 'lucide-react';
+import { ArrowRight, Home, Box, Info, DollarSign, Mail, X, Briefcase, Menu } from 'lucide-react';
+import { IoMenu } from 'react-icons/io5';
 import DeepnexLogo from '../images/Deepnex-Logo.png';
 
 // Simplified button component
@@ -17,32 +18,63 @@ const PrimaryButton = ({ children, className, onClick }) => {
 };
 
 // Simplified dock icon component
-const DockIcon = ({ icon: Icon, label, to, active, onClick }) => { // Added onClick prop
+const DockIcon = ({ icon: Icon, label, to, active }) => {
+  const [bounce, setBounce] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+  
+  const handleMouseEnter = () => {
+    setBounce(true);
+    setShowTooltip(true);
+    // Reset bounce animation after it completes
+    setTimeout(() => setBounce(false), 500);
+  };
+  
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
+  };
+
   return (
     <Link 
-      to={to} 
-      onClick={onClick} // Added onClick handler to the Link
-      className="group flex flex-col items-center justify-center px-2 sm:px-3 flex-1 min-w-0"
+      to={to}
+      className="flex flex-col items-center justify-center px-1 sm:px-2 flex-1 min-w-0 relative"
     >
-      <div className={`p-2.5 rounded-full ${active ? 'bg-primary text-white' : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/70'} transition-all duration-300 transform group-hover:scale-110 shadow-md relative overflow-hidden`}>
-        {active && (
-          <span className="absolute inset-0 bg-primary animate-pulse opacity-20 rounded-full"></span>
-        )}
-        <Icon className="w-5 h-5 relative z-10" />
+      {/* Icon container with hover effect only on the icon */}
+      <div 
+        className="icon-container relative"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleMouseEnter}
+        onTouchEnd={handleMouseLeave}
+      >
+        <div className={`p-1.5 sm:p-2 rounded-lg ${active ? 'bg-primary text-white' : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/70'} transition-all duration-300 transform hover:scale-110 shadow-md relative overflow-hidden ${bounce ? 'dock-icon-bounce' : ''}`}>
+          {active && (
+            <span className="absolute inset-0 bg-primary animate-pulse opacity-20 rounded-lg"></span>
+          )}
+          <Icon className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
+          <span className="absolute inset-0 bg-primary/20 scale-0 hover:scale-100 rounded-lg transition-transform duration-300"></span>
+        </div>
+        
+        {/* Tooltip/label for mobile screens on hover */}
+        <span 
+          className={`sm:hidden absolute -top-12 left-1/2 -translate-x-1/2 mt-1 text-sm font-medium bg-gray-800 text-white px-3 py-1.5 rounded-md transition-all duration-300 scale-0 whitespace-nowrap pointer-events-none z-20 shadow-lg before:content-[''] before:absolute before:top-full before:left-1/2 before:-translate-x-1/2 before:border-5 before:border-transparent before:border-t-gray-800 ${showTooltip ? 'opacity-100 scale-100' : 'opacity-0'}`}
+          style={{ animation: bounce && showTooltip ? 'tooltip-appear 0.3s ease forwards' : 'none' }}
+        >
+          {label}
+        </span>
       </div>
-      <span className="mt-1 text-xs font-medium text-gray-400 group-hover:text-gray-200 transition-all whitespace-nowrap truncate">{label}</span>
+      
+      {/* Show label below icon on medium screens and up, hide on mobile */}
+      <span className="hidden md:block text-xs font-medium text-gray-300 mt-1 text-center leading-tight">
+        {label}
+      </span>
     </Link>
   );
 };
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDockOpen, setIsDockOpen] = useState(false);
   const location = useLocation();
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
   const activePath = location.pathname;
 
   // Handle scroll effect
@@ -62,6 +94,10 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleDock = () => {
+    setIsDockOpen(!isDockOpen);
+  };
+
   return (
     <>
       {/* Top Logo Bar */}
@@ -70,25 +106,26 @@ const Navbar = () => {
           <img 
             src={DeepnexLogo} 
             alt="Deepnex Logo" 
-            className="logo-image w-auto h-14 sm:h-20 transform transition-all duration-500 group-hover:scale-105 group-hover:brightness-110" 
+            className="logo-image w-auto h-20 sm:h-26 md:h-22 transform transition-all duration-500 group-hover:scale-105 group-hover:brightness-110" 
           />
           <div className="absolute -bottom-1 -right-1 w-12 h-12 bg-primary/5 rounded-full scale-0 group-hover:scale-100 transition-all duration-500"></div>
         </Link>
-
-        {/* Mobile Menu Toggle - Visible on small screens, hidden on md and up */}
-        <div className="md:hidden ml-auto"> 
+        
+        {/* Menu Toggle Button - Visible on mobile and medium screens */}
+       <div className="lg:hidden ml-auto"> 
           <button
-            onClick={toggleMobileMenu}
+            onClick={toggleDock}
             className="p-2 rounded-md text-primary bg-gray-100 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200 z-50"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isDockOpen  ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-        
-        {/* Desktop Navigation - Only visible on medium screens and above */}
-        <div className="hidden md:flex items-center space-x-10 bg-gray-50/80 px-6 py-2 rounded-full shadow-inner">
-          <Link to="/" className={`relative font-medium text-sm transition-all duration-300 px-4 py-2 rounded-full ${activePath === '/' ? 'text-white bg-primary shadow-md' : 'text-gray-700 hover:text-primary hover:bg-primary/10'} group`}>
+      
+       
+        {/* Desktop Navigation - Only visible on large screens and above */}
+        <div className="hidden lg:flex items-center space-x-10 bg-gray-50/80 px-6 py-2 rounded-full shadow-inner">
+          <Link to="/" className={`relative font-medium text-sm  transition-all duration-300 px-4 py-2 rounded-full ${activePath === '/' ? 'text-white bg-primary shadow-md' : 'text-gray-700 hover:text-primary hover:bg-primary/10'} group`}>
             <span className="flex items-center gap-1">
               <Home className="w-4 h-4 mr-1" />
               Home
@@ -113,12 +150,6 @@ const Navbar = () => {
               About
             </span>
           </Link>
-          {/* <Link to="/investors" className={`relative font-medium text-sm transition-all duration-300 px-4 py-2 rounded-full ${activePath === '/investors' ? 'text-white bg-primary shadow-md' : 'text-gray-700 hover:text-primary hover:bg-primary/10'} group`}>
-            <span className="flex items-center gap-1">
-              <DollarSign className="w-4 h-4 mr-1" />
-              Investors
-            </span>
-          </Link> */}
           <Link to="/contact" className={`relative font-medium text-sm transition-all duration-300 px-4 py-2 rounded-full ${activePath === '/contact' ? 'text-white bg-primary shadow-md' : 'text-gray-700 hover:text-primary hover:bg-primary/10'} group`}>
             <span className="flex items-center gap-1">
               <Mail className="w-4 h-4 mr-1" />
@@ -133,10 +164,10 @@ const Navbar = () => {
           </Link>
         </div>
         
-        {/* CTA Button - Hidden on mobile, visible on md and up */}
-        <div className="hidden md:block ml-4">
+        {/* CTA Button - Hidden on mobile and tablet, visible on lg and up */}
+        <div className="hidden lg:block ml-4">
           <Link to="/contact">
-            <PrimaryButton className="px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base shadow-lg hover:shadow-primary/30">
+            <PrimaryButton className="px-5 py-2.5 sm:px-6 sm:py-3 lg:hidden xl:flex text-sm sm:text-base  shadow-lg hover:shadow-primary/30">
               <span className="flex items-center gap-1">
                 Get Started
                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
@@ -146,26 +177,26 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Dock Navigation - Only visible on small screens */}
+      {/* Mobile dock navigation - Toggleable on mobile and medium screens */}
       <nav className={`
-        mobile-dock md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-[100] 
-        bg-gray-900/80 backdrop-blur-lg rounded-2xl shadow-2xl shadow-black/40 
-        px-3 py-3 flex items-center justify-around space-x-1 
-        border border-gray-700/50 w-[90%] max-w-md mx-auto
-        transition-all duration-300 ease-out 
-        ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full pointer-events-none'}
+        mobile-dock lg:hidden fixed bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 z-[100] 
+        bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-lg rounded-2xl 
+        shadow-[0_8px_32px_rgba(0,0,0,0.4),_0_0_0_1px_rgba(255,255,255,0.1)_inset] 
+        px-3 sm:px-4 py-2.5 sm:py-3 flex items-center justify-evenly space-x-1 sm:space-x-2 
+        border border-gray-700/30 w-[95%] sm:w-[90%] max-w-sm sm:max-w-md mx-auto
+        transition-all duration-500 ease-out 
+        ${isDockOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20 pointer-events-none'}
+        before:content-[''] before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-primary/10 before:via-transparent before:to-accent/10 before:opacity-50
       `}>
-        {/* Close menu when a link is clicked */}
-        {/* We'll wrap DockIcon or add onClick to each Link within DockIcon if needed */}
-        {/* For simplicity, let's assume clicking a DockIcon should close the menu */}
-        {/* This requires passing toggleMobileMenu to DockIcon or handling it here */}
-        <DockIcon icon={Home} label="Home" to="/" active={activePath === '/'} onClick={isMobileMenuOpen ? toggleMobileMenu : undefined} />
-          <DockIcon icon={Briefcase} label="Services" to="/services" active={activePath === '/services'} onClick={isMobileMenuOpen ? toggleMobileMenu : undefined} />
-        <DockIcon icon={Box} label="Product" to="/product" active={activePath === '/product'} onClick={isMobileMenuOpen ? toggleMobileMenu : undefined} />
-        <DockIcon icon={Info} label="About" to="/about" active={activePath === '/about'} onClick={isMobileMenuOpen ? toggleMobileMenu : undefined} />
-        {/* <DockIcon icon={DollarSign} label="Investors" to="/investors" active={activePath === '/investors'} onClick={isMobileMenuOpen ? toggleMobileMenu : undefined} />*/}
-        <DockIcon icon={Mail} label="Contact" to="/contact" active={activePath === '/contact'} onClick={isMobileMenuOpen ? toggleMobileMenu : undefined} /> 
-        <DockIcon icon={Briefcase} label="Careers" to="/careers" active={activePath === '/careers'} onClick={isMobileMenuOpen ? toggleMobileMenu : undefined} />
+        {/* Dock Indicator - Shows when dock is open */}
+        <div className={`absolute -top-2 left-1/2 transform -translate-x-1/2 w-10 h-1 bg-white/30 rounded-full transition-all duration-300 ${isDockOpen ? 'opacity-100' : 'opacity-0'}`}></div>
+        {/* Navigation Icons */}
+        <DockIcon icon={Home} label="Home" to="/" active={activePath === '/'} />
+        <DockIcon icon={Briefcase} label="Services" to="/services" active={activePath === '/services'} />
+        <DockIcon icon={Box} label="Product" to="/product" active={activePath === '/product'} />
+        <DockIcon icon={Info} label="About" to="/about" active={activePath === '/about'} />
+        <DockIcon icon={Mail} label="Contact" to="/contact" active={activePath === '/contact'} /> 
+        <DockIcon icon={Briefcase} label="Careers" to="/careers" active={activePath === '/careers'} />
       </nav>
     </>  
   );

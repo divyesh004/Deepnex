@@ -132,12 +132,12 @@ const HomePage = () => {
         'Goal-based planning',
         'AI-powered financial insights'
       ],
-      url: 'https://niveshpath.deepnex.com', // Example URL
+      url: 'https://niveshpath.deepnex.in/',
       imageSrc: niveshpathImage
     },
     {
       icon: Shield,
-      title: 'StressBudddy AI - Stress Buddy AI',
+      title: 'MindCare - AI Mental Health Support',
       description: 'Your AI psychiatrist. Round-the-clock support for mental health and emotional well-being.',
       features: [
         'Confidential chat support',
@@ -145,12 +145,12 @@ const HomePage = () => {
         'Mood tracking and analysis',
         'Personalized coping strategies'
       ],
-      url: 'https://stressbuddy.deepnex.com', // Example URL
+      url: 'https://mindcare.deepnex.in/',
       imageSrc: stressBuddyImage
     },
     {
       icon: BarChart3,
-      title: 'AI Student Support',
+      title: 'EduNex - AI Learning Companion',
       description: 'An intelligent learning companion for students. Assistance with studies, assignments, and career guidance.',
       features: [
         'Personalized learning paths',
@@ -158,7 +158,7 @@ const HomePage = () => {
         'Assignment help and feedback',
         'Skill development resources'
       ],
-      url: 'https://studentsupport.deepnex.com', // Example URL
+      url: 'https://edunex.deepnex.in/',
       imageSrc: aiStudentSupportImage
     },
     {
@@ -171,7 +171,7 @@ const HomePage = () => {
         'Portfolio optimization',
         'Risk assessment tools'
       ],
-      url: 'https://stockanalysis.deepnex.com', // Example URL
+      url: null, // Coming Soon - no URL
       imageSrc: stockAnalysisImage
     }
   ];
@@ -189,12 +189,12 @@ const HomePage = () => {
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="text-center lg:text-left">
+            <div className="text-center md:text-center lg:text-left">
               <motion.div 
                 className="mb-6"
                 initial={{ opacity: 0 }}
@@ -209,7 +209,7 @@ const HomePage = () => {
                     className="text-primary"
                   />
                 </h1>
-                <div className="mt-4 w-32 h-1.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-full animate-pulse mx-auto lg:mx-0"></div>
+                <div className="mt-4 w-32 h-1.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-full animate-pulse mx-auto md:mx-auto lg:mx-0"></div>
               </motion.div>
               
               <motion.p 
@@ -221,17 +221,14 @@ const HomePage = () => {
                  Deepnex is a product-first, AI-native tech company built in Surat, India. We develop software that combines deep technologies like AI, blockchain, and IoT — with deep purpose.</motion.p>
               
               <motion.div 
-                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center md:justify-center lg:justify-start"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                <Link to="/services" className="w-full sm:w-auto bg-primary text-white px-6 py-3 sm:px-5 sm:py-2.5 rounded-md font-medium transition-all duration-300 hover:bg-accent hover:scale-105 flex items-center justify-center text-base sm:text-sm md:text-base">
+                <Link to="/services" className="w-fit mx-auto sm:mx-0 sm:w-auto bg-primary text-white px-6 py-3 sm:px-5 sm:py-2.5 rounded-md font-medium transition-all duration-300 hover:bg-accent hover:scale-105 flex items-center justify-center text-base sm:text-sm md:text-base">
                   Our Service  <ArrowRight className="ml-2 w-3 h-3 sm:w-4 sm:h-4" />
                 </Link>
-                {/* <Link to="/investors" className="w-full sm:w-auto bg-white text-primary border border-primary px-6 py-3 sm:px-5 sm:py-2.5 rounded-md font-medium transition-all duration-300 hover:bg-secondary/20 hover:scale-105 flex items-center justify-center text-base sm:text-sm md:text-base">
-                  Investor Deck
-                </Link> */}
               </motion.div>
             </div>
             <div className="hidden lg:flex justify-center items-center relative w-full max-w-md mx-auto lg:max-w-none lg:mx-0 aspect-square mt-12 lg:mt-0 lg:aspect-auto lg:h-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
@@ -363,7 +360,7 @@ const HomePage = () => {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                      {product.url && (
+                      {product.url ? (
                         <Link 
                           to={product.url} 
                           target="_blank" 
@@ -373,6 +370,10 @@ const HomePage = () => {
                           <span>Explore Product</span>
                           <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
                         </Link>
+                      ) : (
+                        <div className="inline-flex items-center justify-center px-8 py-4 bg-gray-400 text-white font-semibold rounded-xl cursor-not-allowed">
+                          <span>Coming Soon</span>
+                        </div>
                       )}
                     </div>
                   </div>

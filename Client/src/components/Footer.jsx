@@ -3,6 +3,7 @@ import MeteorShower from './MeteorShower';
 import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Instagram, Facebook, Mail, MapPin, Phone } from 'lucide-react';
 
+
 const FooterLink = ({ to, children }) => (
   <li>
     <Link to={to} className="text-sm text-gray-200 hover:text-white transition-colors duration-300">
@@ -33,28 +34,21 @@ const Footer = () => {
       <MeteorShower theme="dark" count={20} /> {/* Added MeteorShower component */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 mb-12 sm:mb-16">
-          {/* Column 1: Brand & Call to Action */} 
+          {/* Column 1: Brand & Description */} 
           <div className="col-span-1">
             <h3 className="text-xl font-semibold text-white mb-4">Deepnex</h3>
             <p className="text-sm text-gray-300 mb-6">
               Revolutionizing enterprise integration with cutting-edge AI solutions.
             </p>
-            <Link 
-              to="/contact" 
-              className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-accent transition-colors duration-300 shadow-lg hover:shadow-primary/40 transform hover:scale-105"
-            >
-              Join Our Waitlist
-            </Link>
           </div>
 
           {/* Column 2: Quick Links */} 
           <div className="col-span-1">
-            <h3 className="text-lg font-semibold text-white mb-6 border-b-2 border-primary pb-2 inline-block">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-6 bord er-b-2 border-primary pb-2 inline-block">Quick Links</h3>
             <ul className="space-y-3">
               <FooterLink to="/">Home</FooterLink>
               <FooterLink to="/product">Product</FooterLink>
               <FooterLink to="/about">About Us</FooterLink>
-              <FooterLink to="/investors">For Investors</FooterLink>
               <FooterLink to="/contact">Contact</FooterLink>
             </ul>
           </div>
@@ -83,7 +77,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-white mb-6 border-b-2 border-primary pb-2 inline-block">Connect With Us</h3>
             <ul className="flex space-x-5 sm:space-x-6 items-center">
               <SocialLink href="https://linkedin.com/company/deepnex" icon={Linkedin} label="LinkedIn" />
-              <SocialLink href="https://www.instagram.com/deepnex.in?igsh=bjJ1bjUybXozZmh6" icon={Instagram} label="Instagram" />
+              <SocialLink href="https://www.instagram.com/deepnex" icon={Instagram} label="Instagram" />
             </ul>
           </div>
         </div>
