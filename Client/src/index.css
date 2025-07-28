@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* Replacing Heloveta with Inter font which is already available */
+/* @font-face {
   font-family: 'Heloveta';
-  src: url('../fonts/Heloveta.woff2') format('woff2'); /* Adjusted path */
-  /* other font formats */
-}
+  src: url('/fonts/Heloveta.woff2') format('woff2');
+} */
 
 :root {
   --primary: #E63946;
@@ -29,7 +29,7 @@ html, body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Heloveta', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
 }
 

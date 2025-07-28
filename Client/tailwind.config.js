@@ -14,7 +14,7 @@ export default {
         secondary: '#F5F5F5',
       },
       fontFamily: {
-        heloveta: ['Heloveta', 'sans-serif'],
+        heloveta: ['Inter', 'sans-serif'],
       },
       animation: {
         'warp': 'warp 20s linear infinite',

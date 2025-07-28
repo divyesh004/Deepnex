@@ -179,7 +179,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero relative overflow-hidden min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] flex items-center pt-20 pb-10 sm:pt-24 sm:pb-12 md:pt-28 md:pb-16">
+      <section className="hero relative overflow-hidden min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] flex items-center pt-24 pb-10 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute w-full h-full bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10"></div>
           <div className="absolute inset-0 opacity-70">
@@ -202,7 +202,7 @@ const HomePage = () => {
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
                 <h1 className="font-heloveta text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
-                  <span className="block text-accent mb-2">Building the Future</span>
+                  <span className="block text-accent mb-2 mt-16">Building the Future</span>
                   <MorphingText 
                     texts={["of Technology", "of Innovation", "of AI", "of Tomorrow"]} 
                     interval={2000} 

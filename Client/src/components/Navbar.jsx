@@ -101,12 +101,12 @@ const Navbar = () => {
   return (
     <>
       {/* Top Logo Bar */}
-      <div className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-2 px-4   flex justify-between items-center ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-lg' : 'bg-white shadow-sm'}`}>
+      <div className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-0 px-4 flex justify-between items-center ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-lg' : 'bg-white shadow-sm'}`}>
         <Link to="/" className="logo-container group flex items-center relative overflow-hidden">
           <img 
             src={DeepnexLogo} 
             alt="Deepnex Logo" 
-            className="logo-image w-auto h-20 sm:h-26 md:h-22 transform transition-all duration-500 group-hover:scale-105 group-hover:brightness-110" 
+            className="logo-image w-auto h-16 sm:h-18 md:h-20 transform transition-all duration-500 group-hover:scale-105 group-hover:brightness-110" 
           />
           <div className="absolute -bottom-1 -right-1 w-12 h-12 bg-primary/5 rounded-full scale-0 group-hover:scale-100 transition-all duration-500"></div>
         </Link>
@@ -124,7 +124,7 @@ const Navbar = () => {
       
        
         {/* Desktop Navigation - Only visible on large screens and above */}
-        <div className="hidden lg:flex items-center space-x-10 bg-gray-50/80 px-6 py-2 rounded-full shadow-inner">
+        <div className="hidden lg:flex items-center space-x-10 bg-gray-50/80 px-4 py-2 rounded-full shadow-inner">
           <Link to="/" className={`relative font-medium text-sm  transition-all duration-300 px-4 py-2 rounded-full ${activePath === '/' ? 'text-white bg-primary shadow-md' : 'text-gray-700 hover:text-primary hover:bg-primary/10'} group`}>
             <span className="flex items-center gap-1">
               <Home className="w-4 h-4 mr-1" />
